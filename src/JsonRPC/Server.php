@@ -528,15 +528,7 @@ class Server
     public function executeCallback(Closure $callback, $params)
     {
         $reflection = new ReflectionFunction($callback);
-
-        $arguments = $this->getArguments(
-            $params,
-            $reflection->getParameters(),
-            $reflection->getNumberOfRequiredParameters(),
-            $reflection->getNumberOfParameters()
-        );
-
-        return $reflection->invokeArgs($arguments);
+        return $reflection->invokeArgs($params);
     }
 
     /**
@@ -563,15 +555,7 @@ class Server
         }
 
         $reflection = new ReflectionMethod($class, $method);
-
-        $arguments = $this->getArguments(
-            $params,
-            $reflection->getParameters(),
-            $reflection->getNumberOfRequiredParameters(),
-            $reflection->getNumberOfParameters()
-        );
-
-        return $reflection->invokeArgs($instance, $arguments);
+        return $reflection->invokeArgs($instance, $params);
     }
 
     /**
