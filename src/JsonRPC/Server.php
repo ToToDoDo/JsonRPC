@@ -528,7 +528,7 @@ class Server
     public function executeCallback(Closure $callback, $params)
     {
         $reflection = new ReflectionFunction($callback);
-        return $reflection->invokeArgs($params);
+        return $reflection->invokeArgs(array($params));
     }
 
     /**
@@ -555,7 +555,7 @@ class Server
         }
 
         $reflection = new ReflectionMethod($class, $method);
-        return $reflection->invokeArgs($instance, $params);
+        return $reflection->invokeArgs($instance, array($params));
     }
 
     /**
